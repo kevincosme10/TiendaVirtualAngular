@@ -1,0 +1,66 @@
+<h1>Producto<small>Nombre del producto</small></h1>
+<hr>
+
+<div class="row text-right">
+    <div class="col">
+        <button class="btn btn-danger">
+            <i routerLink="/productos" class="fa fa-arrow-left">Regresar</i>
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+
+        <form #f="ngForm">
+            <div class="form-group">
+
+                <label>ID</label>
+                <input name="id" [(ngModel)]="producto.id" type="text" placeholder="ID" class="form-control" disabled="disabled">
+                <small>Este campo es autogenerado</small>
+            </div>
+            <div class="form-group">
+                <label>Nombre</label>
+                <input name="nombre" [(ngModel)]="producto.nombre" type="text" required placeholder="Nombre" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Codigo</label>
+                <input name="codigo" [(ngModel)]="producto.codigo" type="text" required placeholder="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Precio</label>
+                <input name="precio" [(ngModel)]="producto.precio" type="text" required placeholder="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Descripcion</label>
+                <textarea name="descripcion" [(ngModel)]="producto.descripcion" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Fecha de creacion</label>
+                <input name="createdate" [(ngModel)]="producto.createDate" type="text" placeholder="" class="form-control" disabled="disabled">
+            </div>
+            <div class="form-group">
+                <label>Fecha de modificacion</label>
+                <input name="lastupdate" [(ngModel)]="producto.lastUpdate" type="text" placeholder="" class="form-control" disabled="disabled">
+            </div>
+            <div class="form-group">
+                <label>Cantidad</label>
+                <input name="cantidad" [(ngModel)]="producto.cantidad" type="text" placeholder="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Estado</label>
+                <select name="estado" [(ngModel)]="producto.estado" required class="form-control">
+                  <option>Activo</option>
+                  <option>Inactivo</option>
+                </select>
+            </div>
+
+            <hr>
+            <div class="form-group text-center">
+                <button (click)="guardar()" type="submit" class="btn btn-primary w-25"> <i class="fa fa-save"> Guardar</i> </button>
+            </div>
+
+        </form>
+    </div>
+</div>

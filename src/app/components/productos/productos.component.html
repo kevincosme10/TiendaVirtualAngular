@@ -1,72 +1,79 @@
-<h1 class="text-center">Listado De Productos</h1>
-<hr>
+<div class="container">
 
-<div class="row">
-    <div class="col text-right">
-        <button routerLink="/producto/nuevo" class="btn btn-primary">
-            <i class="fa fa-plus">Agregar</i>
-        </button>
+    <h1 class="text-center">
+
+        Listado De Productos</h1>
+    <hr>
+
+    <div class="row">
+        <div class="col text-right">
+            <button routerLink="/producto/nuevo" class="btn btn-success mb-auto">
+                <i class="fa fa-plus">Agregar</i>
+            </button>
+        </div>
     </div>
-</div>
 
-<table *ngIf="!cargando" class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">Codigo</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Cantidad disponible</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Fecha de creacion</th>
-            <th scope="col">Fecha de modificacion</th>
-            <th scope="col">Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let producto of productos; let i = index">
-            <td>{{producto.codigoProducto }}</td>
-            <td>{{producto.nombre}}</td>
-            <td>
-                <label *ngIf="producto.cantidad >= 1" class="badge badge-primary">{{producto.cantidad}}</label>
-                <label *ngIf="producto.cantidad <= 0" class="badge badge-danger">{{producto.cantidad}}</label>
-            </td>
-            <td>{{producto.descripcion}}</td>
+    <table *ngIf="!cargando" class="table mt-2">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Codigo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Cantidad disponible</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Fecha de creacion</th>
+                <th scope="col">Fecha de modificacion</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let producto of productos; let i = index">
+                <td>{{producto.codigoProducto }}</td>
+                <td>{{producto.nombre}}</td>
+                <td>
+                    <label *ngIf="producto.cantidad >= 1" class="badge badge-primary">{{producto.cantidad}}</label>
+                    <label *ngIf="producto.cantidad <= 0" class="badge badge-danger">{{producto.cantidad}}</label>
+                </td>
+                <td>{{producto.descripcion}}</td>
 
-            <td>
-                <label *ngIf="producto.estado">Activo</label>
-                <label *ngIf="!producto.estado">Activo</label>
-            </td>
+                <td>
+                    <label *ngIf="producto.estado">Activo</label>
+                    <label *ngIf="!producto.estado">Activo</label>
+                </td>
 
-            <td>{{producto.precio | currency}}</td>
-            <td>{{producto.createDate | date}}</td>
-            <td>{{producto.lastUpdate | date}}</td>
-            <td>
-                <div class="btn-group">
-                    <i [routerLink]="['/producto{id}']" class="btn btn-primary fas fa-edit"></i>
+                <td>{{producto.precio | currency}}</td>
+                <td>{{producto.createDate | date}}</td>
+                <td>{{producto.lastUpdate | date}}</td>
+                <td>
+                    <div class="btn-group">
+                        <i [routerLink]="['/update-producto']" (click)="editProducto(producto.id)" class="btn btn-primary fas fa-edit"></i>
 
-                    <i (click)="borrarProducto(producto, i)" class="btn btn-danger fas fa-trash-alt"></i>
-                </div>
-            </td>
-        </tr>
+                        <i (click)="borrarProducto(producto, i)" class="btn btn-danger fas fa-trash-alt"></i>
+                    </div>
+                </td>
+            </tr>
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
 
-<div *ngIf="!cargando && productos.length === 0" class="alert alert-warning text-center mt-3">
-    <h4 class="alert-heading">No hay registros</h4>
-    <p>
-        <i class="fa fa-exclamation fa-2x"></i>
-    </p>
+    <div *ngIf="!cargando && productos.length === 0" class="alert alert-warning text-center mt-3">
+        <h4 class="alert-heading">No hay registros</h4>
+        <p>
+            <i class="fa fa-exclamation fa-2x"></i>
+        </p>
 
-</div>
+    </div>
 
-<div *ngIf="cargando" class="alert alert-info text-center mt-3">
-    <h4 class="alert-heading">Cargando</h4>
-    <p>
-        <i class="fa fa-sync-alt fa-spin fa-2x"></i>
-    </p>
+    <div *ngIf="cargando" class="alert alert-info text-center mt-3">
+        <h4 class="alert-heading">Cargando</h4>
+        <p>
+            <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+        </p>
 
-    <p class="mb-0"></p>
+        <p class="mb-0"></p>
+    </div>
+
+
 </div>

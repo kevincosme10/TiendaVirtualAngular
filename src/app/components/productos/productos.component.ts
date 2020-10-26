@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ProductosServiceService } from '../../services/productos-service.service';
 import { ProductoModel } from '../../models/producto.model';
 import Swal from 'sweetalert2';
+import { NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import { importExpr } from '@angular/compiler/src/output/output_ast';
+import { UpdateProductoComponent } from '../update-producto/update-producto.component';
+import { config } from 'process';
 
 @Component({
   selector: 'productos',
@@ -13,16 +17,30 @@ export class ProductosComponent implements OnInit {
 productos: ProductoModel[] = [];
 cargando = false;
 
-  constructor(private productoService: ProductosServiceService) { }
+  constructor(private productoService: ProductosServiceService,
+    public modalservices: NgbModal
+                 ) { }
 
   ngOnInit(): void {
     this.cargando = true;
-    this.productoService.getProducto().subscribe(resp => {
-      console.log(resp)
-      this.productos = resp;
-      this.cargando = false;
-    });
+    this.getAll();
+   
   }
+
+editProducto(id: any){
+var modal = this.modalservices.open(UpdateProductoComponent);
+modal.componentInstance.id = id;
+modal.componentInstance.notifyParent.subscribe((res) => {this.getAll();});
+
+}
+
+getAll(){
+  this.productoService.getProducto().subscribe(resp => {
+  
+    this.productos = resp;
+    this.cargando = false;
+  });
+}
 
   borrarProducto(producto:ProductoModel, i: number)
   {

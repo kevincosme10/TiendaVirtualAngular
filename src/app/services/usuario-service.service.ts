@@ -22,4 +22,10 @@ export class UsuarioServiceService {
 
   }
 
+
+
+  obtenerOpcionesMenu(idUsuario: number){
+    return this.http.get<any>(`https://localhost:44317/api/usuario/OpcionesUsuario?idUsuario=${idUsuario}`);
+  }
+
 }

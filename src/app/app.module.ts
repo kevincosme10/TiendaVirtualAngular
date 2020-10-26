@@ -13,6 +13,8 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { IngresarComponent } from './components/ingresar/ingresar.component';
 import { usuarioModel } from './models/usuario.model';
+import { UpdateProductoComponent } from './components/update-producto/update-producto.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -25,14 +27,16 @@ import { usuarioModel } from './models/usuario.model';
     ProductoComponent,
     ProductosComponent,
     CarritoComponent,
-    IngresarComponent
+    IngresarComponent,
+    UpdateProductoComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

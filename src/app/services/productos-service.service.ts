@@ -19,11 +19,15 @@ refreshPage() {
 
   crearProducto(Item: any){
     
-    return this.http.get<any>(`${this.url}/api/Producto/PostProducto/${Item.nombre}/${Item.codigo}/${Item.descripcion}/${Item.precio}/${Item.cantidad}`);
+    return this.http.get<any>(`${this.url}/api/Producto/PostProducto/${Item.nombre}/${Item.codigoProducto}/${Item.descripcion}/${Item.precio}/${Item.cantidad}`);
   }
 
   actualizarProducto(Item: any){
-    return this.http.get<any>(`${this.url}/api/Producto/PostProducto/${Item.nombre}/${Item.codigo}/${Item.descripcion}/${Item.precio}/${Item.cantidad}`);
+    return this.http.get<any>(`${this.url}/api/Producto/PostProducto/${Item.nombre}/${Item.codigoProducto}/${Item.descripcion}/${Item.precio}/${Item.cantidad}`);
+  }
+
+  getByid(id: any){
+    return this.http.get<any>(`${this.url}/api/Producto/${id}`);
   }
 
   getProducto(){
@@ -36,7 +40,7 @@ map(resp => this.crearArreglo(resp)), delay(1500)
 
     const productos: ProductoModel[] = [];
 
-console.log(ProductoObj);
+//console.log(ProductoObj);
 
 if(ProductoObj === null){
   return [];

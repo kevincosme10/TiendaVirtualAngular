@@ -1,0 +1,92 @@
+<div class="modal-header">
+
+    <h4 class="modal-title">Actualizar/Reponer: {{producto.nombre}}</h4>
+
+    <button type="button" class="close" aria-label="Close" (click)="activemodal.close('Close click')">
+
+        <span aria-hidden="true">&times;</span>
+
+    </button>
+
+</div>
+
+<div class="modal-body">
+
+    <form enctype="multipart/form-data">
+
+        <div class="form-group m-form__group">
+
+            <label>
+
+               Código
+
+            </label> <span class="text-danger" *ngIf='!producto.codigoProducto'> * </span>
+
+            <input maxlength=8 minlength="8" type="text" class="form-control  m-input" name="code" [(ngModel)]="producto.codigoProducto" />
+
+        </div>
+
+        <div class="form-group m-form__group">
+
+            <label>
+
+                Nombre
+
+            </label> <span class="text-danger" *ngIf='!producto.nombre'> * </span>
+
+            <input type="text" class="form-control  m-input" name="nombre" [(ngModel)]="producto.nombre" />
+
+        </div>
+
+        <div class="form-group m-form__group">
+
+            <label>
+
+                Precio
+
+            </label> <span class="text-danger" *ngIf='!producto.precio'> * </span>
+
+            <input type="number" class="form-control  m-input" name="precio" [(ngModel)]="producto.precio" />
+
+        </div>
+
+        <div class="form-group m-form__group">
+
+            <label for="descripcion">
+
+                Descripcion
+
+            </label> <span class="text-danger" *ngIf='!producto.descripcion'> * </span>
+
+            <input type="text" class="form-control  m-input" name="descripcion" [(ngModel)]="producto.descripcion" />
+
+        </div>
+
+        <div class="form-group m-form__group">
+
+            <label for="banco">
+
+                Cantidad
+
+            </label> <span class="text-danger" *ngIf='!producto.cantidad'> * </span>
+
+            <input type="number" class="form-control  m-input" name="cantidad" [(ngModel)]="producto.cantidad" />
+
+        </div>
+    </form>
+
+
+
+</div>
+
+<div class=" modal-footer ">
+
+    <button type="button " class="btn btn-outline-dark " (click)="activemodal.close( ' Close click ') ">Cerrar</button>
+
+    <button type="button " class="btn btn-primary " (click)="save()">
+
+        Guardar
+
+    </button>
+
+</div>

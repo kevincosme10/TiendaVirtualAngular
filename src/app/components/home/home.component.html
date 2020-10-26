@@ -8,9 +8,27 @@
                 <p class="card-text mb-4"> {{producto.descripcion}}</p>
                 <p class="card-text mb-4"> <strong>Precio:</strong> {{producto.precio}} RD$</p>
                 <p class="card-text mb-4"> <strong>Cantidad disponible:</strong> {{producto.cantidad}}</p>
-                <button class="btn btn-success " [routerLink]="['/carritocompras']">Comprar</button>
+                <button class="btn btn-success btn-sm mr-1 " (click)="addCarrito(producto.id)">Agregar al carrito</button>
+                <button class="btn btn-success btn-sm mr-1 " (click)="comprar(producto.id)">Comprar</button>
             </div>
         </div>
     </div>
 
+</div>
+
+<div *ngIf="!cargando && productos.length === 0" class="alert alert-warning text-center mt-3">
+    <h4 class="alert-heading">No hay registros</h4>
+    <p>
+        <i class="fa fa-exclamation fa-2x"></i>
+    </p>
+
+</div>
+
+<div *ngIf="cargando" class="alert alert-info text-center mt-3">
+    <h4 class="alert-heading">Cargando</h4>
+    <p>
+        <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+    </p>
+
+    <p class="mb-0"></p>
 </div>

@@ -15,17 +15,17 @@
         <form #f="ngForm">
             <div class="form-group">
 
-                <label>ID</label>
+                <label>{{producto.id}}</label>
                 <input name="id" [(ngModel)]="producto.id" type="text" placeholder="ID" class="form-control" disabled="disabled">
                 <small>Este campo es autogenerado</small>
             </div>
             <div class="form-group">
                 <label>Nombre</label>
-                <input name="nombre" [(ngModel)]="producto.nombre" type="text" required placeholder="Nombre" class="form-control">
+                <input name="nombre" minlength=3 maxlength=20 [(ngModel)]="producto.nombre" type="text" required placeholder="Nombre" class="form-control">
             </div>
             <div class="form-group">
                 <label>Codigo</label>
-                <input name="codigo" [(ngModel)]="producto.codigo" type="text" required placeholder="" class="form-control">
+                <input maxlength=8 minlength="8" name="codigo" [(ngModel)]="producto.codigoProducto" type="text" required placeholder="" class="form-control">
             </div>
             <div class="form-group">
                 <label>Precio</label>
@@ -33,20 +33,20 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Descripcion</label>
-                <textarea name="descripcion" [(ngModel)]="producto.descripcion" class="form-control" rows="3"></textarea>
+                <textarea maxlength=100 name="descripcion" [(ngModel)]="producto.descripcion" class="form-control" rows="3"></textarea>
             </div>
 
-            <div class="form-group">
+            <!--    <div class="form-group">
                 <label>Fecha de creacion</label>
                 <input name="createdate" [(ngModel)]="producto.createDate" type="text" placeholder="" class="form-control" disabled="disabled">
             </div>
             <div class="form-group">
                 <label>Fecha de modificacion</label>
                 <input name="lastupdate" [(ngModel)]="producto.lastUpdate" type="text" placeholder="" class="form-control" disabled="disabled">
-            </div>
+            </div> -->
             <div class="form-group">
                 <label>Cantidad</label>
-                <input name="cantidad" [(ngModel)]="producto.cantidad" type="text" placeholder="" class="form-control">
+                <input minlength=1 name="cantidad" [(ngModel)]="producto.cantidad" type="text" placeholder="" class="form-control">
             </div>
             <div class="form-group">
                 <label>Estado</label>

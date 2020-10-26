@@ -4,10 +4,11 @@
         <div *ngFor="let producto of productos; let i = index" class="card">
             <img class="img-fluid" src="../../../assets/img/compra.jpg" class="card-img-top" alt="Cargando imagen...">
             <div class="card-body">
-                <h5 class="card-title">{{producto.nombre}}</h5>
-                <p class="card-text">{{producto.descripcion}}</p>
-                <p class="card-text">{{producto.precio}} RD$</p>
-                <button class="btn btn-success">Comprar</button>
+                <h5 class="card-title mb-4"><strong>{{producto.nombre}}</strong></h5>
+                <p class="card-text mb-4"> {{producto.descripcion}}</p>
+                <p class="card-text mb-4"> <strong>Precio:</strong> {{producto.precio}} RD$</p>
+                <p class="card-text mb-4"> <strong>Cantidad disponible:</strong> {{producto.cantidad}}</p>
+                <button class="btn btn-success " [routerLink]="['/carritocompras']">Comprar</button>
             </div>
         </div>
     </div>

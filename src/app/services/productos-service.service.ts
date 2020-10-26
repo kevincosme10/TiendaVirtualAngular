@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ProductoModel } from '../models/producto.model';
-import { map } from 'rxjs/operators';
+import { map, delay } from 'rxjs/operators';
 
 
 @Injectable({
@@ -13,15 +13,22 @@ export class ProductosServiceService {
 
 private url = 'https://localhost:44317';
 
+refreshPage() {
+  window.location.reload();
+ }
 
   crearProducto(Item: any){
     
     return this.http.get<any>(`${this.url}/api/Producto/PostProducto/${Item.nombre}/${Item.codigo}/${Item.descripcion}/${Item.precio}/${Item.cantidad}`);
   }
 
+  actualizarProducto(Item: any){
+    return this.http.get<any>(`${this.url}/api/Producto/PostProducto/${Item.nombre}/${Item.codigo}/${Item.descripcion}/${Item.precio}/${Item.cantidad}`);
+  }
+
   getProducto(){
     return this.http.get(`${this.url}/api/Producto`).pipe(
-map(resp => this.crearArreglo(resp))
+map(resp => this.crearArreglo(resp)), delay(1500)
     );
   }
 
@@ -42,4 +49,10 @@ productos.push(producto)
 
 return productos;
   }
+
+borrarProducto(id: number){
+return this.http.delete(`${this.url}/api/Producto/${id}`);
+}
+
+
 }

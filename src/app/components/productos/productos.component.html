@@ -9,12 +9,11 @@
     </div>
 </div>
 
-<table class="table">
+<table *ngIf="!cargando" class="table">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
             <th scope="col">Codigo</th>
+            <th scope="col">Nombre</th>
             <th scope="col">Cantidad disponible</th>
             <th scope="col">Descripcion</th>
             <th scope="col">Estado</th>
@@ -26,10 +25,12 @@
     </thead>
     <tbody>
         <tr *ngFor="let producto of productos; let i = index">
-            <th scope="row">{{i + 1 }}</th>
+            <td>{{producto.codigoProducto }}</td>
             <td>{{producto.nombre}}</td>
-            <td>{{producto.codigo}}</td>
-            <td>{{producto.cantidad}}</td>
+            <td>
+                <label *ngIf="producto.cantidad >= 1" class="badge badge-primary">{{producto.cantidad}}</label>
+                <label *ngIf="producto.cantidad <= 0" class="badge badge-danger">{{producto.cantidad}}</label>
+            </td>
             <td>{{producto.descripcion}}</td>
 
             <td>
@@ -37,14 +38,14 @@
                 <label *ngIf="!producto.estado">Activo</label>
             </td>
 
-            <td>{{producto.precio}}</td>
-            <td>{{producto.createDate}}</td>
-            <td>{{producto.lastUpdate}}</td>
+            <td>{{producto.precio | currency}}</td>
+            <td>{{producto.createDate | date}}</td>
+            <td>{{producto.lastUpdate | date}}</td>
             <td>
                 <div class="btn-group">
-                    <i class="btn btn-primary fas fa-edit"></i>
+                    <i [routerLink]="['/producto{id}']" class="btn btn-primary fas fa-edit"></i>
 
-                    <i class="btn btn-danger fas fa-trash-alt"></i>
+                    <i (click)="borrarProducto(producto, i)" class="btn btn-danger fas fa-trash-alt"></i>
                 </div>
             </td>
         </tr>
@@ -53,7 +54,7 @@
 </table>
 
 
-<div class="alert alert-warning text-center mt-3">
+<div *ngIf="!cargando && productos.length === 0" class="alert alert-warning text-center mt-3">
     <h4 class="alert-heading">No hay registros</h4>
     <p>
         <i class="fa fa-exclamation fa-2x"></i>
@@ -61,7 +62,7 @@
 
 </div>
 
-<div class="alert alert-info text-center mt-3">
+<div *ngIf="cargando" class="alert alert-info text-center mt-3">
     <h4 class="alert-heading">Cargando</h4>
     <p>
         <i class="fa fa-sync-alt fa-spin fa-2x"></i>
